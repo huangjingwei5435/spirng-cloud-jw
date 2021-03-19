@@ -17,33 +17,33 @@ import java.util.List;
 
 @Configuration
 public class FeignConfiguration {
-    @Bean
-    public Encoder feignEncoder() {
-        return new SpringEncoder(feignHttpMessageConverter());
-    }
-
-    private ObjectFactory<HttpMessageConverters> feignHttpMessageConverter() {
-        final HttpMessageConverters httpMessageConverters =
-                new HttpMessageConverters(getFastJsonConverter());
-        return () -> httpMessageConverters;
-    }
-
-    private FastJsonHttpMessageConverter getFastJsonConverter() {
-        FastJsonHttpMessageConverter converter =
-                new FastJsonHttpMessageConverter();
-
-        List<MediaType> supportedMediaTypes = new ArrayList<>();
-        MediaType mediaTypeJson =
-                MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE);
-        supportedMediaTypes.add(mediaTypeJson);
-        converter.setSupportedMediaTypes(supportedMediaTypes);
-        FastJsonConfig config = new FastJsonConfig();
-        config.getSerializeConfig()
-                .put(Json.class, new SwaggerJsonSerializer());
-        config.setSerializerFeatures(
-                SerializerFeature.DisableCircularReferenceDetect);
-        converter.setFastJsonConfig(config);
-
-        return converter;
-    }
+//    @Bean
+//    public Encoder feignEncoder() {
+//        return new SpringEncoder(feignHttpMessageConverter());
+//    }
+//
+//    private ObjectFactory<HttpMessageConverters> feignHttpMessageConverter() {
+//        final HttpMessageConverters httpMessageConverters =
+//                new HttpMessageConverters(getFastJsonConverter());
+//        return () -> httpMessageConverters;
+//    }
+//
+//    private FastJsonHttpMessageConverter getFastJsonConverter() {
+//        FastJsonHttpMessageConverter converter =
+//                new FastJsonHttpMessageConverter();
+//
+//        List<MediaType> supportedMediaTypes = new ArrayList<>();
+//        MediaType mediaTypeJson =
+//                MediaType.valueOf(MediaType.APPLICATION_JSON_UTF8_VALUE);
+//        supportedMediaTypes.add(mediaTypeJson);
+//        converter.setSupportedMediaTypes(supportedMediaTypes);
+//        FastJsonConfig config = new FastJsonConfig();
+//        config.getSerializeConfig()
+//                .put(Json.class, new SwaggerJsonSerializer());
+//        config.setSerializerFeatures(
+//                SerializerFeature.DisableCircularReferenceDetect);
+//        converter.setFastJsonConfig(config);
+//
+//        return converter;
+//    }
 }
