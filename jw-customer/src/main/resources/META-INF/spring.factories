@@ -1,0 +1,4 @@
+org.springframework.context.ApplicationListener=\
+  com.nacos.jw.customer.jwcustomer.listenner.ApplicationStartedEventListener,\
+  com.nacos.jw.customer.jwcustomer.listenner.ApplicationPreparedEventListener,\
+  com.nacos.jw.customer.jwcustomer.listenner.ApplicationReadyEventListener

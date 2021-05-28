@@ -2,20 +2,20 @@ package com.jw.cloud.jwprovider;
 
 import jw.client.StoreClient;
 import jw.client.dto.Store;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
-import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
-import org.springframework.cloud.openfeign.EnableFeignClients;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
 @SpringBootApplication
-@EnableDiscoveryClient
-@EnableFeignClients(basePackages = "jw.client")
+//@EnableDiscoveryClient
+@MapperScan("com.jw.cloud.jwprovider.mapper")
+//@EnableFeignClients(basePackages = "jw.client")
 public class JwProviderApplication {
 
     public static void main(String[] args) {

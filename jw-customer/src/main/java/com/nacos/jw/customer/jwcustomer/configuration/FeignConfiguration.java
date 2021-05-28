@@ -4,6 +4,7 @@ import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
 import com.alibaba.fastjson.support.springfox.SwaggerJsonSerializer;
+import com.nacos.jw.customer.jwcustomer.eneity.Person;
 import feign.codec.Encoder;
 import org.springframework.beans.factory.ObjectFactory;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -46,4 +47,9 @@ public class FeignConfiguration {
 //
 //        return converter;
 //    }
+
+    @Bean
+    public Person person() {
+        return new Person();
+    }
 }

@@ -2,7 +2,9 @@ package com.nacos.jw.customer.jwcustomer;
 
 import jw.client.StoreClient;
 import jw.client.dto.Store;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.ServiceInstance;
@@ -10,6 +12,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
@@ -18,6 +21,7 @@ import java.util.List;
 @SpringBootApplication
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = "jw.client")
+@Slf4j
 public class JwCustomerApplication {
 
     @LoadBalanced
@@ -28,6 +32,16 @@ public class JwCustomerApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(JwCustomerApplication.class, args);
+
+    }
+
+    @Slf4j
+    @Component
+    static class DataLoader implements CommandLineRunner {
+        @Override
+        public void run(String... strings) throws Exception {
+            log.info("Loading data...");
+        }
     }
 
     @RestController
