@@ -4,8 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 
 import java.util.Comparator;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 /**
@@ -30,13 +32,17 @@ public class Tk {
         String signString = JSON.toJSONString(detailRequest);
         JSONObject jsonObject = JSON.parseObject(signString);
 
-        Map<String, Object> final
-        jsonObject.entrySet().stream().peek(entry -> {
-                    if (entry.getValue() instanceof JSONObject) {
-                        ((JSONObject) entry.getValue()).entrySet().stream().sorted(Map.Entry.comparingByKey());
-                    }
-                }
-        ).sorted(Map.Entry.comparingByKey()).
+        Map<String, Object> finalParam = new LinkedHashMap<>();
+        jsonObject.entrySet().stream().sorted(Map.Entry.comparingByKey()).forEach(entry -> {
+            if (entry instanceof JSONObject) {
+                finalParam.put(entry.getKey(), ((JSONObject) entry.getValue())
+                        .entrySet().stream()
+                        .sorted(Map.Entry.comparingByKey())
+                        .collect(Collectors.toMap(Map.Entry::getKey, Function.identity(), (t1, t2) -> t2, LinkedHashMap::new)));
+            } else {
+                finalParam.put(entry.getKey(), entry.getValue());
+            }
+        });
 
     }
 
