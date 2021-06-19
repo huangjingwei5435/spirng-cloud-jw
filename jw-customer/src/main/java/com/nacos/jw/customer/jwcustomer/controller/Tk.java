@@ -43,7 +43,9 @@ public class Tk {
                 finalParam.put(entry.getKey(), entry.getValue());
             }
         });
-
+        String value = JSON.toJSONString(finalParam);
+        System.out.println(value);
+        System.out.println(MD5.md5EncryptTo32(value + ATGC));
     }
 
 
